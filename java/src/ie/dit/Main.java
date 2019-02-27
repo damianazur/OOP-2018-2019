@@ -22,10 +22,10 @@ public class Main
 		
 	}
 	
-	public void arrays()
+	public void starMap()
 	{
 		String[] a = {"MAIN"};
-        processing.core.PApplet.runSketch( a, new Arrays());
+        processing.core.PApplet.runSketch( a, new StarMap());
 		
 	}
 
@@ -33,6 +33,6 @@ public class Main
 	public static void main(String[] args)
 	{
 		Main main = new Main();
-		main.arrays();			
+		main.starMap();			
 	}
 }
