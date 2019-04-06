@@ -2,21 +2,11 @@ package ie.dit;
 
 import processing.core.PVector;
 
-public class Bullet
+public class Bullet extends GameObject
 {
-    private PVector pos;
-    private PVector forward;
-    private float rotation;
-    private float speed;
-    private YASC yasc;
-
     public Bullet(YASC yasc, float x, float y, float rotation)
     {
-        this.yasc = yasc;
-        pos = new PVector(x, y);
-        forward = new PVector(0, -1);
-        this.rotation = rotation; 
-        speed = 5;
+        super(yasc, x, y, rotation, 5);
     }  
 
     public void render()
@@ -28,6 +18,16 @@ public class Bullet
         yasc.popMatrix();
     }
 
+    public void checkCollisions()
+    {
+        float dist = PVector.dist(yasc.aiShip.getPos(), pos);
+        if (dist < yasc.aiShip.size / 2)
+        {
+            yasc.aiShip.setHealth(yasc.aiShip.getHealth() - 1);
+            yasc.gameObjects.remove(this);
+        }
+    }
+
     public void update()
     {
         // static methods on the Math class
@@ -36,76 +36,31 @@ public class Bullet
 
         // pos += forward * speed
         pos.add(PVector.mult(forward, speed));
+
+        if (pos.x < 0)
+        {
+            pos.x = yasc.width;
+        }
+        if (pos.x > yasc.width)
+        {
+            pos.x = 0;
+        }
+        if (pos.y < 0)
+        {
+            pos.y = yasc.height;
+        }
+        if (pos.y > yasc.height)
+        {
+            pos.y = 0;
+        }
+        alive += yasc.timeDelta;
+        if (alive >= 5.0)
+        {
+            yasc.gameObjects.remove(this);
+        }
+        checkCollisions();
     }
 
-    /**
-     * @return the pos
-     */
-    public PVector getPos() {
-        return pos;
-    }
+    float alive;
 
-    /**
-     * @param pos the pos to set
-     */
-    public void setPos(PVector pos) {
-        this.pos = pos;
-    }
-
-    /**
-     * @return the forward
-     */
-    public PVector getForward() {
-        return forward;
-    }
-
-    /**
-     * @param forward the forward to set
-     */
-    public void setForward(PVector forward) {
-        this.forward = forward;
-    }
-
-    /**
-     * @return the rotation
-     */
-    public float getRotation() {
-        return rotation;
-    }
-
-    /**
-     * @param rotation the rotation to set
-     */
-    public void setRotation(float rotation) {
-        this.rotation = rotation;
-    }
-
-    /**
-     * @return the speed
-     */
-    public float getSpeed() {
-        return speed;
-    }
-
-    /**
-     * @param speed the speed to set
-     */
-    public void setSpeed(float speed) {
-        this.speed = speed;
-    }
-
-    /**
-     * @return the yasc
-     */
-    public YASC getYasc() {
-        return yasc;
-    }
-
-    /**
-     * @param yasc the yasc to set
-     */
-    public void setYasc(YASC yasc) {
-        this.yasc = yasc;
-    }
-    
 }

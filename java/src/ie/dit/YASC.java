@@ -6,11 +6,12 @@ import processing.core.PApplet;
 
 public class YASC extends PApplet
 {
-    Ship s;
-    AIShip aiShip;
     boolean[] keys = new boolean[1024];
 
-    public ArrayList<Bullet> bullets = new ArrayList<Bullet>(); 
+    public ArrayList<GameObject> gameObjects = new ArrayList<GameObject>(); 
+
+    AIShip aiShip;
+    Ship ship;
 
     public void keyPressed()
     {
@@ -33,8 +34,13 @@ public class YASC extends PApplet
 
     public void setup()
     {
-        s = new Ship(this, width / 2, height / 2, 5, 50);
+        ship = new Ship(this, width / 2, height / 2, 5, 50);
+        gameObjects.add(ship);
         aiShip = new AIShip(this, 100, 100, 5, 50);
+        gameObjects.add(aiShip);
+        gameObjects.add(new AmmoPowerup(this));
+        gameObjects.add(new AmmoPowerup(this));
+        
     }
 
     public float timeDelta;
@@ -45,19 +51,24 @@ public class YASC extends PApplet
         timeDelta = (now - last) / 1000.0f;
         last = now;
         background(255);
-        s.render();
-        s.update();
-
-        aiShip.update();
-        aiShip.render();
-
+        
         fill(0);
-        text("Bullets: " + bullets.size(), 50, 100);
-        for(Bullet b:bullets)
+        text("GameObjects: " + gameObjects.size(), 50, 100);
+        for(int i= gameObjects.size() - 1; i >= 0; i--)
         {
+            GameObject b = gameObjects.get(i);
             b.render();
             b.update();
-        }
+
+            if (b instanceof Powerup)
+            {
+                if (dist(b.pos.x, b.pos.y, ship.pos.x, ship.pos.y) < 50)
+                {
+                    ((Powerup)b).applyTo(ship);
+                    gameObjects.remove(b);
+                }
+            }
+        }        
     }
 
 
