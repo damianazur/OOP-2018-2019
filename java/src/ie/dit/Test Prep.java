@@ -13,4 +13,32 @@
 
     git pull upstream master
     git push origin branchName
+
+
+    Getting a column from a row:
+        public Star(TableRow row)
+        {
+            this.hab = row.getInt("Hab?");
+            this.displayName = row.getString("DisplayName");
+            this.distance = row.getFloat("Distance");
+            this.xG = row.getFloat("Xg");
+            this.yG = row.getFloat("Xy");
+            this.zG = row.getFloat("Xz");
+            this.absMag = row.getFloat("absMag");
+        }
+    
+    Creating and Initializing an Array List (holds Star objects):
+        private ArrayList<Star> stars = new ArrayList<Star>(); 
+
+    Creating and Loading in data from file into a table
+        Table table = loadTable("HabHYG15ly.csv", "header");
+
+    Getting a row from a table:
+        table.getRow(i)r
+
+    or do it using a foreach loop
+        for (TableRow row : table.rows()) {
+            Star star = new Star(row);
+            stars.add(star);
+        }
 */
