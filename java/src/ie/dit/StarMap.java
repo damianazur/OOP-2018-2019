@@ -16,7 +16,7 @@ import processing.data.TableRow;
 public class StarMap extends PApplet {
     private ArrayList<Star> stars = new ArrayList<Star>(); 
     private int border = 50;
-    private int screenDim = 800;
+    private int screenDim = 600;
     private int selected1 = -1;
     private int selected2 = -1;
 
@@ -64,10 +64,11 @@ public class StarMap extends PApplet {
                 // if the first star is not selected then select it
                 if (selected1 == -1) {
                     selected1 = i;
-                // if the second star is not selected
+                // if the second star is not selected then select it
                 } else if (selected2 == -1) {
                     selected2 = i;
-                // if both are selected
+                // if both are selected then select the new star and 
+                // deselect the second one
                 } else if (selected1 != -1 && selected2 != -1) {
                     selected1 = i;
                     selected2 = -1;
@@ -132,6 +133,7 @@ public class StarMap extends PApplet {
         drawStars();
 
         // if the one star is selected but the other is not
+        // draw line from the star to the mouse
         if (selected1 != -1 && selected2 == -1) {
             Star s1 = stars.get(selected1);
             float x1 = map(s1.getxG(), -5, 5, border, screenDim - border);
@@ -139,7 +141,7 @@ public class StarMap extends PApplet {
 
             stroke(255, 255, 0);
             line(x1, y1, mouseX, mouseY);
-        // if both stars are selected
+        // if both stars are selected then draw line between two
         } else if (selected1 != -1 && selected2 != -1) {
             Star s1 = stars.get(selected1);
             float x1 = map(s1.getxG(), -5, 5, border, screenDim - border);
@@ -151,6 +153,11 @@ public class StarMap extends PApplet {
 
             stroke(255, 255, 0);
             line(x1, y1, x2, y2);
+
+            // distance in a 3 dimentional space
+            float dist = dist(s1.getxG(), s1.getyG(), s1.getzG(), s2.getxG(), s2.getyG(), s2.getzG());
+            text("Distance from " + s1.getDisplayName() + " to " + s2.getDisplayName() + " is " + dist + " parsecs", border,
+                    height - 25);
         }
     }
     
