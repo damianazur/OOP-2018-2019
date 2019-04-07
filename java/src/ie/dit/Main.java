@@ -76,7 +76,7 @@ public class Main
 
 		
 		Main main = new Main();
-		main.yasc();		
+		main.starMap();		
 		
 		
 	}

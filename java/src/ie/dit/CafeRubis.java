@@ -42,6 +42,7 @@ public class CafeRubis extends PApplet
         
         // This also works
         /*
+        // Checks if the button has been clicked along the x-axis
         if (mouseX > border && mouseX < border + buttonWidth)
         {
             for(int i = 0 ; i < products.size() ; i ++)
