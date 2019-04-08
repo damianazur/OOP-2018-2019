@@ -56,4 +56,13 @@
             line(border, var, screenDim - border, var);
             text(i, border/2, var);
         }
+
+    Buttons:
+        if ((mouseX > border && mouseX < border + buttonWidth))
+        {
+            if ((mouseY - border) % (buttonHeight + gap) < buttonHeight)
+            {
+                which = (int) ((mouseY - border) / (buttonHeight + gap));
+            }
+        }
 */
