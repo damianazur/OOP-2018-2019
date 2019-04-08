@@ -65,4 +65,19 @@
                 which = (int) ((mouseY - border) / (buttonHeight + gap));
             }
         }
+
+    -- or --
+
+        if (mouseX > border && mouseX < border + buttonWidth)
+        {
+            for(int i = 0 ; i < products.size() ; i ++)
+            {
+                float y = border + (i * (buttonHeight + gap));
+                if (mouseY > y && mouseY < y + buttonHeight)
+                {
+                    which = i;
+                    break;
+                }
+            }
+        }
 */
