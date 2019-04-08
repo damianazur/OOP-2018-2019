@@ -43,4 +43,17 @@
             Star star = new Star(row);
             stars.add(star);
         }
+
+    Drawing Grid:
+        for (int i = -5; i < 6; i++) {
+            float var = map(i, -5, 5, border, screenDim - border);
+
+            // vertical lines
+            line(var, border, var, screenDim - border);
+            text(i, var, border/2);
+
+            // horizontal lines
+            line(border, var, screenDim - border, var);
+            text(i, border/2, var);
+        }
 */
