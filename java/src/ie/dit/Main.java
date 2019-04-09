@@ -59,8 +59,9 @@ public class Main
 		
 	}
 
-	public static void main(String[] args)
+	public void mandala()
 	{
+<<<<<<< HEAD
 
 		PVector a = new PVector(0, 5);
 		PVector b = new PVector(10, -2);
@@ -77,7 +78,25 @@ public class Main
 		
 		Main main = new Main();
 		main.starMap();		
+=======
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Mandala());
+>>>>>>> master
 		
+	}
+	
+	public void audio2()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new Audio2());
 		
+	}
+
+	public static void main(String[] args)
+	{
+	
+		Main main = new Main();
+		main.audio2();		
+			
 	}
 }
