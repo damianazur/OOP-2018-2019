@@ -10,6 +10,7 @@ public class CafeRubis extends PApplet
 {
     ArrayList<Product> products = new ArrayList<Product>();
     
+    // random comment
     public void settings()
     {
         size(800, 800);
