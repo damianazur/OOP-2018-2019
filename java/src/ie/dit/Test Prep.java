@@ -14,8 +14,13 @@
         git remote add upstream http://github.com/skooter500/OOP-2018-2019
 
         git pull upstream master
-        git push origin branchName
+        git push
 
+    Creating and Loading in data from file into a table
+        Table table = loadTable("HabHYG15ly.csv", "header");
+    
+    Getting a row from a table:
+        table.getRow(i);
 
     Getting a column from a row:
         public Star(TableRow row)
@@ -31,12 +36,6 @@
     
     Creating and Initializing an Array List (holds Star objects):
         private ArrayList<Star> stars = new ArrayList<Star>(); 
-
-    Creating and Loading in data from file into a table
-        Table table = loadTable("HabHYG15ly.csv", "header");
-
-    Getting a row from a table:
-        table.getRow(i)r
 
     or do it using a foreach loop
         for (TableRow row : table.rows()) {
